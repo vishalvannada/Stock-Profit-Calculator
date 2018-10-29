@@ -19,7 +19,9 @@ def hello():
         purchasePrice = (allotment * initialPrice)
         totalExpenditure = purchasePrice + sellCommission + buyCommission
         capitalGain = proceeds - totalExpenditure
-        tax = capitalGain * (capitalGainTaxRate/100)
+        tax = 0
+        if capitalGain > 0 :
+            tax = capitalGain * (capitalGainTaxRate/100)
         cost = totalExpenditure + tax
         netProfit = proceeds - cost
         roi = (netProfit/cost)*100
@@ -49,4 +51,4 @@ def hello():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8000)
