@@ -1,0 +1,49 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+<form method="POST">
+  <div class="form-group" style="max-width: 40%; margin: auto">
+    <label for="stockSymbol">Please enter a stock symbol</label>
+    <input type="text" name="stockSymbol" class="form-control" id="stockSymbol"
+    placeholder="Stock Symbol" required autocomplete="off" aria-describedby="stockHelp">
+
+
+    <small id="stockHelp" class="form-text text-muted">
+      <i class="fas fa-info-circle"></i>
+      Please note that API limit is 5 calls per minute, and 500 calls per day
+    </small>
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </div>
+</form>
+
+<br><br>
+
+{% if(data): %}
+<div class="card" style="width: 24rem; margin:auto">
+  <div class="card-body">
+    <h3 class="card-title">Output : </h3>
+    <h5 class="card-text">{{data.time}}</h5>
+    <h5 class="card-text">{{data.name }} ({{data.symbol}}) <br>
+      {% if data.change < 0 %}
+      {{data.price}}  {{data.change}} ({{data.changePercent}})
+      {% else %}
+      {{data.price}}  +{{data.change}} (+{{data.changePercent}})
+      {% endif %}
+    </h5>
+    <br>
+  </div>
+</div>
+{% endif %}
+
+{% if(error): %}
+<div class="card" style="width: 24rem; margin:auto">
+  <div class="card-body">
+    <h5 class="card-text">{{error.error}}</h5>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

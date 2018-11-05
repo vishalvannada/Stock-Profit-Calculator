@@ -1,6 +1,11 @@
-from flask import Flask, request, render_template
-app = Flask(__name__)
+import requests
+import sys
+from flask import Flask, jsonify, request, render_template
+import urllib3
+import datetime
+from pytz import timezone
 
+app = Flask(__name__)
 
 @app.route("/", methods = ['GET','POST'])
 def hello():
@@ -49,6 +54,53 @@ def hello():
     return render_template('form.html')
 
 
+@app.route("/stocks", methods = ['GET','POST'])
+def helloStocks():
+    if request.method == 'POST':
+
+        stockSymbol = request.form.get('stockSymbol');
+        try :
+
+            result = requests.get('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol='+stockSymbol+'&apikey=C3UMGJ3EA980AWMZ')
+            data = result.json();
+            print('vishal', data)
+
+            symbol = data['Global Quote']['01. symbol'];
+            price = data['Global Quote']['05. price'];
+            change = data['Global Quote']['09. change'];
+            changePercent = data['Global Quote']['10. change percent'];
+
+            stockName = requests.get('https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords='+stockSymbol+'&apikey=C3UMGJ3EA980AWMZ')
+            name = stockName.json()['bestMatches'][0]['2. name']
+
+            fmt = "%a %b %d %H:%M:%S %Z %Y"
+            now_utc = datetime.datetime.now(timezone('US/Pacific'))
+            print('\nOutput : \n')
+
+            time = now_utc.strftime(fmt);
+
+
+            data = {
+            'symbol' : symbol,
+            'price' : price,
+            'change' : float(change),
+            'changePercent' : changePercent,
+            'stockName' : stockName,
+            'name' : name,
+            'time' : time
+            }
+            return render_template('searchStocks.html', data = data);
+        except :
+
+            try:
+                note = data['Note'];
+                return render_template('searchStocks.html', error = {'error' : 'Connection Limit, Please try again later!'});
+            except:
+                return render_template('searchStocks.html', error = {'error' : 'Invalid Symbol, Please try again!'});
+
+
+
+    return render_template('searchStocks.html');
 
 if __name__ == '__main__':
     app.run(port=8000)
