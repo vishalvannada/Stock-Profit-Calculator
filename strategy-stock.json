@@ -1,0 +1,72 @@
+{
+  "Investment Strategies": [
+    "Ethical Investing", "Growth Investing",
+    "Index Investing", "Quality Investing",
+    "Value Investing"
+  ],
+  "Ethical Investing": [{
+    "name": "AAPL",
+    "portion": "30"
+  }, {
+    "name": "ADBE",
+    "portion": "20"
+  }, {
+    "name": "NKE",
+    "portion": "30"
+  },{
+    "name": "GOOG",
+    "portion": "20"
+  }],
+  "Growth Investing": [{
+    "name": "EBAY",
+    "portion": "20"
+  }, {
+    "name": "MSFT",
+    "portion": "30"
+  }, {
+    "name": "INTC",
+    "portion": "20"
+  }, {
+    "name": "AMZN",
+    "portion": "30"
+  }],
+  "Index Investing": [{
+    "name": "IBM",
+    "portion": "40"
+  }, {
+    "name": "TWTR",
+    "portion": "30"
+  }, {
+    "name": "CDNS",
+    "portion": "20"
+  }, {
+    "name": "SNPS",
+    "portion": "10"
+  }],
+  "Quality Investing": [{
+    "name": "FB",
+    "portion": "20"
+  }, {
+    "name": "WMT",
+    "portion": "25"
+  }, {
+    "name": "JCI",
+    "portion": "30"
+  },{
+    "name": "CRM",
+    "portion": "25"
+  }],
+  "Value Investing": [{
+    "name": "TSLA",
+    "portion": "25"
+  }, {
+    "name": "JCI",
+    "portion": "25"
+  },{
+    "name": "PYPL",
+    "portion": "35"
+  }, {
+    "name": "FDX",
+    "portion": "15"
+  }]
+}

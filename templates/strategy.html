@@ -1,0 +1,69 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+<form method="POST">
+
+  <label for="stockSymbol">Please enter the Amount</label>
+  <input type="text" name="stockSymbol" class="form-control" id="stockSymbol"
+  placeholder="Amount" autocomplete="off" aria-describedby="stockHelp">
+
+  <small id="stockHelp" class="form-text text-muted">
+    <i class="fas fa-info-circle"></i>
+    Please note that API limit is 5 calls per minute, and 500 calls per day
+  </small>
+  
+  <br>
+  <br>
+
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="strategy" type="checkbox" id="inlineCheckbox1" value="Ethical Investing">
+    <label class="form-check-label" for="inlineCheckbox1">Ethical Investing</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="strategy" type="checkbox" id="inlineCheckbox2" value="Growth Investing">
+    <label class="form-check-label" for="inlineCheckbox2">Growth Investing</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="strategy" type="checkbox" id="inlineCheckbox3" value="Index Investing">
+    <label class="form-check-label" for="inlineCheckbox3">Index Investing</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="strategy" type="checkbox" id="inlineCheckbox4" value="Quality Investing">
+    <label class="form-check-label" for="inlineCheckbox4">Quality Investing</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" name="strategy" type="checkbox" id="inlineCheckbox5" value="Value Investing">
+    <label class="form-check-label" for="inlineCheckbox5">Value Investing</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+
+
+  <!-- <div class="form-group" style="max-width: 40%; margin: auto">
+  <label for="strategy">Select a strategy</label>
+  <select class="custom-select" name='multi-ids' id="strategy-multi" multiple>
+  <option value="Ethical Investing">Ethical Investing</option>
+  <option value="Growth Investing">Growth Investing</option>
+  <option value="Index Investing">Index Investing</option>
+  <option value="Quality Investing">Quality Investing</option>
+  <option value="Value Investing">Value Investing</option>
+</select>
+</div> -->
+
+</form>
+
+{% if(error): %}
+<div class="card" style="width: 24rem; margin:auto">
+  <div class="card-body">
+    <h5 class="card-text" style='color:red'>{{error.error}}</h5>
+  </div>
+</div>
+{% endif %}
+
+<br><br>
+
+{% endblock %}
